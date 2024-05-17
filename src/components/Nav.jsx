@@ -1,11 +1,8 @@
-
 import { Link } from "react-router-dom";
 
 /* eslint-disable react/prop-types */
 // eslint-disable-next-line react/prop-types
 function Nav({categories}) {
-
-  console.log(categories)
 
   return (
     <>

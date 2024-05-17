@@ -8,6 +8,7 @@ function App() {
 
   const [ products, setProducts] = useState([])
   const [ categories, setCategories ] = useState([])
+  const [ cart, setCart ] = useState([])
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -26,13 +27,13 @@ function App() {
     fetchCaterogies()
   },[])
 
-  console.log(categories)
+  console.log(cart)
 
   return (
     <>
       <Nav categories={categories}></Nav>
-      <Outlet context={[products, setProducts]}></Outlet>
-      <SideCart />
+      <Outlet context={[[products, setProducts],[cart, setCart]]}></Outlet>
+      <SideCart cart={cart} setCart={setCart}/>
     </>
   )
 }
