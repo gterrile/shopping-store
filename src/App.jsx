@@ -9,6 +9,7 @@ function App() {
   const [ products, setProducts] = useState([])
   const [ categories, setCategories ] = useState([])
   const [ cart, setCart ] = useState([])
+  
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -26,9 +27,8 @@ function App() {
     fetchProducts()
     fetchCaterogies()
   },[])
-
+  
   console.log(cart)
-
   return (
     <>
       <Nav categories={categories}></Nav>
