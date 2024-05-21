@@ -1,4 +1,3 @@
-import SideCart from './components/SideCart'
 import { Outlet } from 'react-router-dom'
 import Nav from './components/Nav'
 import './App.css'
@@ -9,7 +8,7 @@ function App() {
   const [ products, setProducts] = useState([])
   const [ categories, setCategories ] = useState([])
   const [ cart, setCart ] = useState([])
-  
+
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -28,12 +27,10 @@ function App() {
     fetchCaterogies()
   },[])
   
-  console.log(cart)
   return (
     <>
-      <Nav categories={categories}></Nav>
+      <Nav categories={categories} cart={cart}></Nav>
       <Outlet context={[[products, setProducts],[cart, setCart]]}></Outlet>
-      <SideCart cart={cart} setCart={setCart}/>
     </>
   )
 }

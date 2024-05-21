@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 // eslint-disable-next-line react/prop-types
 function ProductItem({product, cart, setCart}) {
-  
+
   function handleAddToCart(product) {
     // empty cart case
     if (!cart.length) {
@@ -25,13 +25,34 @@ function ProductItem({product, cart, setCart}) {
   }
 
   return (
-    <li key={product.id} className="flex flex-col  w-96 items-center">
-    <h2 className="text-3xl">{product.title}</h2><br />
-    <p>{product.description}</p><br />
-    <img src={product.image} alt="" className="size-1/2"/>
-    <h2 className="text-xl text-orange-400 font-bold">price: {product.price}</h2>
-    <button onClick={() => { handleAddToCart(product) }}>Add to Cart</button>
-  </li>
+    <li key={product.id} className="card w-1/3 shadow-xl text-black bg-white">
+      <div >
+        <figure className="p-4"><img src={product.image} className="size-1/2 mt-2" 
+          alt={product.description} /></figure>
+        <div className="card-body gap-4 p-6">
+          <h2 className="card-title font-bold">{product.title}</h2>
+          <div className="max-h-28 overflow-scroll product-description">
+            <p>{product.description}</p>
+          </div>
+
+          <div className="card-actions justify-between items-center">
+            <h3 className="text-2xl text-blue-500 font-bold pl-2">$ {product.price}</h3>
+            {cart.some(item => item.product.id === product.id) ? (
+              <button onClick={() => { handleAddToCart(product) }} 
+                className="btn bg-green-400 hover:bg-green-500 border-none text-white text-lg font-bold w-48">
+                  In cart
+              </button>
+              ) : (
+                <button onClick={() => { handleAddToCart(product) }} 
+                className="btn bg-orange-400 hover:bg-orange-500 border-none text-white text-lg font-bold w-48">
+                  Add to Cart
+              </button>
+              )
+            }
+          </div>
+        </div>
+      </div>
+    </li>
   )
 }
 
