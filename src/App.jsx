@@ -26,7 +26,7 @@ function App() {
     fetchProducts()
     fetchCaterogies()
   },[])
-  
+  console.log(products)
   return (
     <>
       <Nav categories={categories} cart={cart}></Nav>

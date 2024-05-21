@@ -27,20 +27,7 @@ function Nav({categories, cart}) {
           <ul className="menu menu-horizontal gap-8 py-4 pr-4 items-center">
             
             <li>
-              {/* <details>
-                <summary>
-                  Shop
-                </summary>
-                <ul className="p-2 bg-base-100 rounded-t-none w-52">
-                  {categories.map((categorie) => { 
-                    return (
-                      <li key={categorie}>
-                        <Link to={`categorie/${categorie}`}>{categorie}</Link>
-                      </li> 
-                    )
-                  })}
-                </ul>
-              </details> */}
+
               <div className="dropdown dropdown-left dropdown-hover p-0">
                 <div tabIndex={0} role="button" className="btn m-1">Shop</div>
                 <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">

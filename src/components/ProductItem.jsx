@@ -1,3 +1,5 @@
+import Rating from "./Rating"
+
 /* eslint-disable react/prop-types */
 // eslint-disable-next-line react/prop-types
 function ProductItem({product, cart, setCart}) {
@@ -31,12 +33,19 @@ function ProductItem({product, cart, setCart}) {
           alt={product.description} /></figure>
         <div className="card-body gap-4 p-6">
           <h2 className="card-title font-bold">{product.title}</h2>
+
+          <div className="flex flex-row gap-2 items-center">
+            <Rating number={product.rating.rate}></Rating>
+            <h3 className="text-sm hover:underline hover:cursor-pointer text-blue-800 font-bold">{product.rating.count}</h3>
+          </div>
+
+
           <div className="max-h-28 overflow-scroll product-description">
             <p>{product.description}</p>
           </div>
 
           <div className="card-actions justify-between items-center">
-            <h3 className="text-2xl text-blue-500 font-bold pl-2">$ {product.price}</h3>
+            <h3 className="text-2xl text-blue-500 font-bold pl-2">$ {(product.price).toFixed(2)}</h3>
             {cart.some(item => item.product.id === product.id) ? (
               <button onClick={() => { handleAddToCart(product) }} 
                 className="btn bg-green-400 hover:bg-green-500 border-none text-white text-lg font-bold w-48">
