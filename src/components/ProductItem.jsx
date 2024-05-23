@@ -48,12 +48,12 @@ function ProductItem({product, cart, setCart}) {
             <h3 className="text-2xl text-blue-500 font-bold pl-2">${(product.price).toFixed(2)}</h3>
             {cart.some(item => item.product.id === product.id) ? (
               <button onClick={() => { handleAddToCart(product) }} 
-                className="btn bg-green-700 hover:bg-green-800 border-none text-white text-lg font-bold w-48">
+                className="btn bg-green-800 hover:bg-green-800 border-none text-white text-lg font-bold w-48 shadow-md">
                   In cart
               </button>
               ) : (
                 <button onClick={() => { handleAddToCart(product) }} 
-                className="btn bg-amber-600 hover:bg-amber-700 border-none text-white text-lg font-bold w-48">
+                className="btn bg-amber-200 hover:bg-amber-400 border-none text-slate-800 text-lg font-bold w-48 shadow-md">
                   Add to Cart
               </button>
               )

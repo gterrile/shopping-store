@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react"
 import { useOutletContext } from "react-router-dom"
+import logo from '../media/cactus.png';
 
 function calculateTotals(cart) {
   let cartTotalItems = 0
@@ -42,7 +43,7 @@ function Cart() {
     return () => {removeEventListener('resize', handleResize)}
   },[screenWidth])
 
-  const styleFooterWide = 'footer fixed bottom-12 h-32 w-3/4 bg-orange-700 z-1 flex justify-around items-center opacity-75'
+  const styleFooterWide = 'footer fixed bottom-12 h-32 w-3/4 bg-green-800 z-1 flex justify-around items-center opacity-85 rounded-md'
   const styleFooterNarrow = 'footer fixed bottom-0 left-0 p-4 h-40 min-w-96 bg-slate-300 z-1 flex flex-col justify-center items-center opacity-85'
 
   return (
@@ -87,14 +88,18 @@ function Cart() {
         </ul>
  
         <footer className={window.screen.width > 700 ? styleFooterWide : styleFooterNarrow}>
-          <h1 className="text-3xl">{screenWidth > 500 ? 'YOUR ORDER' : ''}</h1>
-          <div className={`flex ${screenWidth > 500 ? 'flex-row' : 'flex-col pb-6'} gap-4 items-center`}>
-            <div className='flex flex-col items-end'>
+          <div className="flex flex-row gap-2 items-center">
+            <img src={logo} alt="" className="h-24 p-2"/>
+            <h1 className="text-3xl text-slate-100">{screenWidth > 500 ? 'YOUR ORDER' : ''}</h1>
+          </div>
+
+          <div className={`flex ${screenWidth > 500 ? 'flex-row' : 'flex-col pb-6'} gap-12 items-center`}>
+            <div className='flex flex-col items-end text-slate-100'>
               <h2>SUBTOTAL: ${totals.price.toFixed(2)}</h2>
               <h2>TAX: ${(totals.price * 0.12).toFixed(2)}</h2>
               <h2>TOTAL: ${(parseFloat(totals.price) + parseFloat(totals.price * 0.12)).toFixed(2)}</h2>
             </div>
-            <button className="btn btn-outline text-lg">Proceed to Checkout</button>
+            <button className="btn btn-outline text-lg text-slate-100 hover:bg-slate-100 hover:text-green-700 hover:border-slate-100">Proceed to Checkout</button>
           </div>
         </footer>
       </div>
