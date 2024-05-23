@@ -10,8 +10,7 @@ function Product() {
 
   return (
     <div className="flex flex-col w-full h-full 
-      bg-slate-600 overflow-scroll gap-10">
-      <h1>{name}</h1>
+      bg-slate-100 overflow-scroll gap-10 pt-6">
       <ul className="flex flex-col items-center gap-4">
         {
           products.map((product) => {

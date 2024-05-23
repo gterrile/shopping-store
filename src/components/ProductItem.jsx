@@ -27,7 +27,7 @@ function ProductItem({product, cart, setCart}) {
   }
 
   return (
-    <li key={product.id} className="card w-1/3 shadow-xl text-black bg-white">
+    <li key={product.id} className="card w-1/3 min-w-72 max-w-96 shadow-xl text-black bg-white">
       <div >
         <figure className="p-4"><img src={product.image} className="size-1/2 mt-2" 
           alt={product.description} /></figure>
@@ -44,16 +44,16 @@ function ProductItem({product, cart, setCart}) {
             <p>{product.description}</p>
           </div>
 
-          <div className="card-actions justify-between items-center">
-            <h3 className="text-2xl text-blue-500 font-bold pl-2">$ {(product.price).toFixed(2)}</h3>
+          <div className="card-actions flex justify-center items-center gap-4">
+            <h3 className="text-2xl text-blue-500 font-bold pl-2">${(product.price).toFixed(2)}</h3>
             {cart.some(item => item.product.id === product.id) ? (
               <button onClick={() => { handleAddToCart(product) }} 
-                className="btn bg-green-400 hover:bg-green-500 border-none text-white text-lg font-bold w-48">
+                className="btn bg-green-700 hover:bg-green-800 border-none text-white text-lg font-bold w-48">
                   In cart
               </button>
               ) : (
                 <button onClick={() => { handleAddToCart(product) }} 
-                className="btn bg-orange-400 hover:bg-orange-500 border-none text-white text-lg font-bold w-48">
+                className="btn bg-amber-600 hover:bg-amber-700 border-none text-white text-lg font-bold w-48">
                   Add to Cart
               </button>
               )

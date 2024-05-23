@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-vars */
+import { useEffect, useState } from "react"
 import { useOutletContext } from "react-router-dom"
 
 function calculateTotals(cart) {
@@ -13,7 +14,8 @@ function calculateTotals(cart) {
 
 function Cart() {
   const [[products, setProducts],[cart, setCart]] = useOutletContext()
-  
+  const [ screenWidth, setScreenWidth ] = useState(window.screen.width)
+
   const totals = calculateTotals(cart)
 
   function handleDeleteCartItem(item) {
@@ -31,9 +33,22 @@ function Cart() {
     setCart(newCart)
   }
 
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.screen.width)
+      console.log('width', screenWidth)
+    }
+    window.addEventListener('resize', handleResize)
+    return () => {removeEventListener('resize', handleResize)}
+  },[screenWidth])
+
+  const styleFooterWide = 'footer fixed bottom-12 h-32 w-3/4 bg-orange-700 z-1 flex justify-around items-center opacity-75'
+  const styleFooterNarrow = 'footer fixed bottom-0 left-0 p-4 h-40 min-w-96 bg-slate-300 z-1 flex flex-col justify-center items-center opacity-85'
+
   return (
     <>
-      <div className="flex flex-col items-center justify-between h-full">
+      <div className="flex flex-col items-center justify-between h-full bg-slate-100 overflow-scroll">
+        
         <ul className="flex flex-col gap-2 z-0 pt-12 pb-48">
           {cart.map((item) => {
             return <li key={item.product.id} 
@@ -70,18 +85,17 @@ function Cart() {
               </li>
           })}
         </ul>
-        <footer className="footer fixed bottom-0 left-0 p-4 h-32 bg-neutral z-1 justify-around items-center opacity-85">
-          
-          <h1>SUMMARY</h1>
-          <div className="flex flex-row gap-12 items-center">
+ 
+        <footer className={window.screen.width > 700 ? styleFooterWide : styleFooterNarrow}>
+          <h1 className="text-3xl">{screenWidth > 500 ? 'YOUR ORDER' : ''}</h1>
+          <div className={`flex ${screenWidth > 500 ? 'flex-row' : 'flex-col pb-6'} gap-4 items-center`}>
             <div className='flex flex-col items-end'>
-              <h2>SUBTOTAL: $ {totals.price.toFixed(2)}</h2>
-              <h2>TAX: $ {(totals.price * 0.12).toFixed(2)}</h2>
-              <h2>TOTAL: $ {(parseFloat(totals.price) + parseFloat(totals.price * 0.12)).toFixed(2)}</h2>
+              <h2>SUBTOTAL: ${totals.price.toFixed(2)}</h2>
+              <h2>TAX: ${(totals.price * 0.12).toFixed(2)}</h2>
+              <h2>TOTAL: ${(parseFloat(totals.price) + parseFloat(totals.price * 0.12)).toFixed(2)}</h2>
             </div>
             <button className="btn btn-outline text-lg">Proceed to Checkout</button>
           </div>
-
         </footer>
       </div>
     </>
