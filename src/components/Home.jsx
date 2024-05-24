@@ -8,7 +8,7 @@ function Home() {
 
   const pictures = [ {url: girl, name: 'WOMEN'},
     {url: men, name: 'MEN'},
-    {url: store, name: 'JEWLERY'},
+    {url: store, name: 'JEWELRY'},
    ]
 
   return (
